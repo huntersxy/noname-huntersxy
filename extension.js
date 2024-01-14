@@ -22,8 +22,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
             "h_huohuoweiba":["double","xy","4/6",["h_quhun"],["boss","forbidai","bossallowed"]],
             "h_ailixiya":["female","xy","3/12",["h_shiyuan","h_renlu"],["zhu","boss","bossallowed"]],
             "h_gx":["female","xy","3/3",["h_guanxin","h_xinqi","h_juxin"],[]],
-            "h_geleixiu":["female","xy","2/2/1",["h_huishi","蘸颜"],["des:画笔，臣服于我"]],
-            "h_yinlang":["female","xy","4/4",["h_stop","异步","下载","注入"],[]],
+            "h_geleixiu":["female","xy","2/2/1",["h_huishi","h_zhanyan"],["des:画笔，臣服于我"]],
+            "h_yinlang":["female","xy","4/4",["h_stop","h_zhuru","h_download","h_yibu"],[]],
+            "h_dwangping":["male","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:我的身后，是我所守护之处"]],
         },
         translate:{
             cvhanser:"Hanser•唱歌憨",
@@ -37,6 +38,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
             "h_gx":"观星",
             "h_geleixiu":"格蕾修",
             "h_yinlang":"银狼",
+            "h_dwangping":"盾王平",
         },
     },
     card:{
@@ -1068,17 +1070,17 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                 animationColor:"wood",
                 audio:"ext:烤箱魔改:2",
                 juexingji:true,
-                derivation:["reyingzi","gzyinghun"],
+                derivation:["h_keyin"],
                 unique:true,
                 trigger:{
                     player:"phaseZhunbeiBegin",
                 },
                 filter:function(event,player){
-        return player.hp<=2&&!player.storage.hunzi;
+        return player.hp<=2;
     },
                 forced:true,
                 content:function(){
-        player.addSkill('keyin');
+        player.addSkill('h_keyin');
         game.log(player,'获得了技能','#g【刻印】')
         player.awakenSkill(event.name);
         player.storage[event.name]=true;
@@ -1371,7 +1373,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
     },
                 "_priority":0,
             },
-            "蘸颜":{
+            "h_zhanyan":{
                 audio:"ext:Huntersxy:2",
                 trigger:{
                     player:["loseAfter","changeHp","gainMaxHpAfter","loseMaxHpAfter"],
@@ -1397,7 +1399,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
             },
             "h_stop":{
                 audio:"ext:Huntersxy:2",
-                usable:2,
+                usable:99999,
                 trigger:{
                     global:"judgeFixing",
                 },
@@ -1450,93 +1452,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
     },
                 "_priority":0,
             },
-            "异步":{
-                mod:{
-                    targetInRange:function (card,player,target){
-            if(player.countCards('j')&&player.inRange(target)){
-                return true;
-            }
-        },
-                    cardUsableTarget:function(card,player,target){
-            if(player.countCards('j')&&player.inRange(target)) return true;
-        },
-                    aiValue:function(player,card,num){
-            if(card.name=='zhangba') return 15;
-            if(player.getEquip('zhangba')&&player.countCards('hs')>1&&['shan','tao'].contains(card.name)) return 0;
-            if(card.name=='shan'||card.name=='tao') return num/2;
-        },
-                },
-                locked:false,
-                audio:"ext:Huntersxy:2",
-                enable:"phaseUse",
-                discard:false,
-                filter:function (event,player){
-        if(player.hasJudge('lebu')) return false;
-        return player.countCards('hes',{suit:'diamond'})>0;
-    },
-                viewAs:{
-                    name:"lebu",
-                },
-                position:"hes",
-                filterCard:function(card,player,event){
-        return get.suit(card)=='diamond'&&player.canAddJudge({name:'lebu',cards:[card]});
-    },
-                selectTarget:-1,
-                filterTarget:function (card,player,target){
-        return player==target;
-    },
-                check:function(card){
-        var player=_status.event.player;
-        if(!player.getEquip('zhangba')&&player.countCards('hs','sha')<2){
-            if(player.countCards('h',function(cardx){
-                return cardx!=card&&cardx.name=='shan';
-            })>0) return 0;
-            var damaged=player.maxHp-player.hp-1;
-            var ts=player.countCards('h',function(cardx){
-                return cardx!=card&&cardx.name=='tao';
-            });
-            if(ts>0&&ts>damaged) return 0;
-        }
-        if(card.name=='shan') return 15;
-        if(card.name=='tao') return 10;
-        return 9-get.value(card);
-    },
-                onuse:function (links,player){
-        var next=game.createEvent('limu_recover',false,_status.event.getParent());
-        next.player=player;
-        next.setContent(function(){player.recover()});
-    },
-                ai:{
-                    result:{
-                        target:1,
-                        ignoreStatus:true,
-                    },
-                    order:12,
-                    basic:{
-                        order:1,
-                        useful:1,
-                        value:8,
-                    },
-                    tag:{
-                        skip:"phaseUse",
-                    },
-                },
-                "_priority":0,
-            },
-            "下载":{
-                trigger:{
-                    player:"phaseJieshuBegin",
-                },
-                frequent:true,
-                filter:function(event,player){
-        return player.countCards('h')<player.maxHp;
-    },
-                content:function(){
-        player.drawTo(player.maxHp);
-    },
-                "_priority":0,
-            },
-            "注入":{
+            "h_zhuru":{
                 audio:"ext:Huntersxy:2",
                 enable:"phaseUse",
                 usable:1,
@@ -1653,6 +1569,217 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                 derivation:"bazhen",
                 "_priority":0,
             },
+            "h_download":{
+                trigger:{
+                    player:"phaseJieshuBegin",
+                },
+                frequent:true,
+                filter:function(event,player){
+        return player.countCards('h')<player.maxHp;
+    },
+                content:function(){
+        player.drawTo(player.maxHp);
+    },
+                "_priority":0,
+            },
+            "h_yibu":{
+                mod:{
+                    targetInRange:function (card,player,target){
+            if(player.countCards('j')&&player.inRange(target)){
+                return true;
+            }
+        },
+                    cardUsableTarget:function(card,player,target){
+            if(player.countCards('j')&&player.inRange(target)) return true;
+        },
+                    aiValue:function(player,card,num){
+            if(card.name=='zhangba') return 15;
+            if(player.getEquip('zhangba')&&player.countCards('hs')>1&&['shan','tao'].contains(card.name)) return 0;
+            if(card.name=='shan'||card.name=='tao') return num/2;
+        },
+                },
+                locked:false,
+                audio:"ext:Huntersxy:2",
+                enable:"phaseUse",
+                discard:false,
+                filter:function (event,player){
+        if(player.hasJudge('lebu')) return false;
+        return player.countCards('hes',{suit:'diamond'})>0;
+    },
+                viewAs:{
+                    name:"lebu",
+                },
+                position:"hes",
+                filterCard:function(card,player,event){
+        return get.suit(card)=='diamond'&&player.canAddJudge({name:'lebu',cards:[card]});
+    },
+                selectTarget:-1,
+                filterTarget:function (card,player,target){
+        return player==target;
+    },
+                check:function(card){
+        var player=_status.event.player;
+        if(!player.getEquip('zhangba')&&player.countCards('hs','sha')<2){
+            if(player.countCards('h',function(cardx){
+                return cardx!=card&&cardx.name=='shan';
+            })>0) return 0;
+            var damaged=player.maxHp-player.hp-1;
+            var ts=player.countCards('h',function(cardx){
+                return cardx!=card&&cardx.name=='tao';
+            });
+            if(ts>0&&ts>damaged) return 0;
+        }
+        if(card.name=='shan') return 15;
+        if(card.name=='tao') return 10;
+        return 9-get.value(card);
+    },
+                onuse:function (links,player){
+        var next=game.createEvent('limu_recover',false,_status.event.getParent());
+        next.player=player;
+        next.setContent(function(){player.recover()});
+    },
+                ai:{
+                    result:{
+                        target:1,
+                        ignoreStatus:true,
+                    },
+                    order:12,
+                    basic:{
+                        order:1,
+                        useful:1,
+                        value:8,
+                    },
+                    tag:{
+                        skip:"phaseUse",
+                    },
+                },
+                "_priority":0,
+            },
+            "h_keyin":{
+                audio:"ext:烤箱魔改:2",
+                unique:true,
+                trigger:{
+                    player:"damageEnd",
+                },
+                frequent:true,
+                content:function(){
+        'step 0'
+        event.num=trigger.num;
+        'step 1'
+        lib.skill.huashen.addHuashens(player,3);
+        'step 2'
+        if(--event.num>0&&player.hasSkill(event.name)&&!get.is.blocked(event.name,player)){
+            player.chooseBool(get.prompt2('xinsheng')).set('frequentSkill',event.name);
+        }
+        else event.finish();
+        'step 3'
+        if(result.bool&&player.hasSkill('xinsheng')){
+            player.logSkill('xinsheng');
+            event.goto(1);
+        }
+    },
+                "_priority":0,
+            },
+            "h_shouhu":{
+                trigger:{
+                    player:"damageBegin1",
+                },
+                usable:1,
+                forced:true,
+                unique:true,
+                content:function(){ trigger.cancel();player.draw(2);player.changeHujia();
+                      
+        
+        
+    },
+                ai:{
+                    player:2,
+                },
+                "_priority":0,
+            },
+            "h_zhudi":{
+                enable:"phaseUse",
+                usable:1,
+                filter:function(event,player){
+        return player.hujia?true:false;
+    },
+                filterTarget:function(card,player,target){
+        return player!=target&&get.distance(player,target,'attack')<=1;
+    },
+                selectTarget:function(){
+        return [1,_status.event.player.hujia];
+    },
+                contentBefore:function(){
+        player.changeHujia(-targets.length);
+    },
+                content:function(){
+        target.damage();
+    },
+                ai:{
+                    order:9,
+                    result:{
+                        target:function(player,target){
+                var eff=get.damageEffect(target,player,target)+0.5;
+                if(eff>0&&eff<=0.5) return 0;
+                return eff;
+            },
+                    },
+                },
+                "_priority":0,
+            },
+            "h_pojia":{
+                trigger:{
+                    player:"phaseEnd",
+                },
+                filter:function(event,player){
+        return player.hujia>0;
+    },
+                forced:true,
+                check:function(event,player){
+        return player.hujia>1&&player.hp>1;
+    },
+                content:function(){
+        player.storage.msilian=player.hujia;
+        player.changeHujia(-player.hujia);
+        player.insertPhase();
+    },
+                group:["msilian_hp","msilian_draw"],
+                subSkill:{
+                    hp:{
+                        trigger:{
+                            player:"phaseAfter",
+                        },
+                        silent:true,
+                        filter:function(event,player){
+                return event.skill=='msilian'&&!player.getStat('damage');
+            },
+                        content:function(){
+                player.loseHp();
+            },
+                        sub:true,
+                        forced:true,
+                        popup:false,
+                        "_priority":1,
+                    },
+                    draw:{
+                        trigger:{
+                            player:"phaseDrawBegin",
+                        },
+                        filter:function(event){
+                return event.getParent('phase').skill=='msilian';
+            },
+                        silent:true,
+                        content:function(){
+                trigger.num+=player.storage.msilian-2;
+            },
+                        sub:true,
+                        forced:true,
+                        popup:false,
+                        "_priority":1,
+                    },
+                },
+                "_priority":0,
+            },
         },
         translate:{
             "h_baohu":"铸圣",
@@ -1672,42 +1799,50 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
             "h_sushe":"速射",
             "h_sushe_info":"出牌阶段，若你的手牌中有花色相同的牌，则你可以将一张当着［万箭齐发］打出",
             "h_weiba":"尾巴",
-            "h_weiba_info":"觉醒技，濒死时，你可以将体力值回复至体力上限-1点值并摸等同于回复量的牌，然后将武将牌替换为【霍霍&尾巴大爷】。",
+            "h_weiba_info":"觉醒技，濒死时，你将体力值回复至体力上限-1点值并摸等同于回复量的牌，然后将武将牌替换为【霍霍&尾巴大爷】。",
             "自爆":"自爆",
-            "自爆_info":"出牌阶段，你可以失去10点体力，然后改变武将牌",
+            "自爆_info":"出牌阶段，你可以失去10点体力，然后变成武将牌代码为h_boom的东西",
             "h_shiyuan":"始源",
             "h_shiyuan_info":"①游戏开始时，你随机将武将牌堆中的六张牌扣置于武将牌上（均称为“始源牌”），选择并亮出一张“始源牌”并声明该武将牌上的一个技能，你拥有该技能且同时将性别和势力属性变成与该武将相同直到该始源被替换（你不可声明限定技、觉醒技、隐匿技、使命技、主公技等特殊技能）。②回合开始时或回合结束时，你重新可以选择一张“始源牌”并声明该武将牌上的一个技能。",
             "h_renlu":"人律",
-            "h_renlu_info":"觉醒技，准备阶段，若你的体力值为2，则获得技能〖刻印〗。",
+            "h_renlu_info":"觉醒技，准备阶段，若你的体力值小于2，则获得技能〖刻印〗。",
             "h_guanxin":"观星",
-            "h_guanxin_info":"准备阶段，你可以观看牌堆顶的X张牌，并将其以任意顺序置于牌堆项或牌堆底。（X为存活角色数且至多为5）",
+            "h_guanxin_info":"准备阶段，你可以观看牌堆顶的10张牌，并将其以任意顺序置于牌堆项或牌堆底。",
             "h_xinqi":"星棋",
             "h_xinqi_info":"摸牌阶段，你可以多摸三张牌。",
             "h_juxin":"聚星",
-            "h_juxin_info":"觉醒技，准备阶段，若你的体力值为2，则获得技能〖国色〗。",
+            "h_juxin_info":"觉醒技，准备阶段，若你的体力值小于2，则你获得技能〖国色〗。",
             "h_fuzhi":"赋值",
             "h_fuzhi_info":"锁定技。你视为拥有技能【】",
             "h_quhun":"驱魂",
             "h_quhun_info":"锁定技。你视为拥有技能【伏骑】【破军】【烈弓】",
             "h_huishi":"绘世",
-            "h_huishi_info":"出牌阶段，你可以视为使用任意基本牌或普通锦囊牌。此牌结算完成后，你选择一项：1.弃置1张牌。2.失去1点体力且本回合内不能再发动〖绘世〗。",
+            "h_huishi_info":"出牌阶段，你可以视为使用任意基本牌或普通锦囊牌。此牌结算完成后，你选择一项：1.弃置2张牌。2.失去1点体力且本回合内不能再发动〖绘世〗。",
             "h_huishi_limit":"画笔",
             "h_huishi_limit_info":"绘世限制技",
-            "蘸颜":"蘸颜",
-            "蘸颜_info":"当你的手牌数小于X时，你可以将手牌摸至X张（X为你已损失的体力值）。",
+            "h_zhanyan":"蘸颜",
+            "h_zhanyan_info":"当你的手牌数小于X时，你可以将手牌摸至X张（X为你已损失的体力值）。",
             "h_stop":"断点",
-            "h_stop_info":"每回合限两次，一名角色的判定结果确定时，若结果的有花色，则你可以终止导致此判定发生的上级事件。然后选择一项：①获得判定牌对应的实体牌。②视为对判定角色使用一张火【杀】（无距离和次数限制）。",
-            "异步":"异步",
-            "异步_info":"出牌阶段，你可以将一张♦牌当做【乐不思蜀】对自己使用，然后回复1点体力。只要你的判定区内有牌，你对攻击范围内的其他角色使用牌便没有次数和距离限制。",
-            "下载":"下载",
-            "下载_info":"结束阶段开始时，你可以将手牌补至体力上限。",
-            "注入":"注入",
-            "注入_info":"出牌阶段限一次，你可选择一名其他角色。该角色获得〖八阵〗，且其所有不为{锁定技、限定技、觉醒技、主公技、带有Charlotte标签}的技能失效。你的下回合开始时，或其因〖八卦阵〗发起的判定结算结束后，你令其恢复其以此法失效的所有技能并失去以此法获得的〖八阵〗，然后获得其区域内的一张牌。",
+            "h_stop_info":"每回合限无数次，一名角色的判定结果确定时，若结果有花色，则你可以终止导致此判定发生的上级事件。然后选择一项：①获得判定牌对应的实体牌。②视为对判定角色使用一张火【杀】（无距离和次数限制）。",
+            "h_zhuru":"注入",
+            "h_zhuru_info":"出牌阶段限一次，你可选择一名其他角色。该角色获得〖八阵〗，且其所有不为{锁定技、限定技、觉醒技、主公技、带有Charlotte标签}的技能失效。你的下回合开始时，或其因〖八卦阵〗发起的判定结算结束后，你令其恢复其以此法失效的所有技能并失去以此法获得的〖八阵〗，然后获得其区域内的一张牌。",
+            "h_download":"下载",
+            "h_download_info":"结束阶段开始时，你将手牌补至体力上限。",
+            "h_yibu":"异步",
+            "h_yibu_info":"出牌阶段，你可以将一张♦牌当做【乐不思蜀】对自己使用，然后回复1点体力。只要你的判定区内有牌，你对攻击范围内的其他角色使用牌便没有次数和距离限制。",
+            "h_keyin":"刻印",
+            "h_keyin_info":"当你受到伤害后，你获得3个始源牌",
+            "h_shouhu":"守护",
+            "h_shouhu_info":"锁定技。每回合限一次，当你受到伤害时，你取消之并摸两张牌且获得一点护甲",
+            "h_zhudi":"逐敌",
+            "h_zhudi_info":"每回合限一次，你可以舍弃任意数量的护甲并对等量的角色造成一点伤害。",
+            "h_pojia":"破甲",
+            "h_pojia_info":"回合结束时，若你有护甲，则你舍弃全部护甲并获得一个额外回合，该回合的摸牌数取决于你舍弃的护甲值，若你在额外回合中未造成伤害，则你失去一点体力。",
         },
     },
-    intro:"烤箱插座阴间武将",
+    intro:"烤箱插座阴间武将基于原版技能的简单魔改",
     author:"huntersxy",
     diskURL:"",
     forumURL:"",
-    version:"1.3",
-},files:{"character":["h_yinlang.jpg"],"card":[],"skill":[],"audio":[]}}})
+    version:"1.5",
+},files:{"character":["h_dwangping.jpg"],"card":[],"skill":[],"audio":[]}}})
