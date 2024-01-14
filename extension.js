@@ -13,18 +13,18 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
 },help:{},config:{},package:{
     character:{
         character:{
-            cvhanser:["female","xy","3/5",["h_fc"],["des:著名CV"]],
-            "h_jiaxu":["male","xy","3/3",["h_jiaxu_8","reluanwu"],["des:御神贾诩"]],
-            "h_spuyuan":["male","xy","3/3",["h_baohu","h_ronghe"],["des:炼器大师"]],
-            "h_smaliang":["male","xy","3/3",["h_zhishu","h_yushu"],["des:妙笔生花"]],
-            "h_bronya":["female","xy","3/3",["h_yuanji","h_sushe"],[]],
-            "h_huohuo":["female","xy","3/3",["h_weiba"],[]],
-            "h_huohuoweiba":["double","xy","4/6",["h_quhun"],["boss","forbidai","bossallowed"]],
-            "h_ailixiya":["female","xy","3/12",["h_shiyuan","h_renlu"],["zhu","boss","bossallowed"]],
-            "h_gx":["female","xy","3/3",["h_guanxin","h_xinqi","h_juxin"],[]],
-            "h_geleixiu":["female","xy","2/2/1",["h_huishi","h_zhanyan"],["des:画笔，臣服于我"]],
-            "h_yinlang":["female","xy","4/4",["h_stop","h_zhuru","h_download","h_yibu"],[]],
-            "h_dwangping":["male","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:我的身后，是我所守护之处"]],
+            cvhanser:["female","xy","3/5",["h_fc"],["des:著名CV","ext:Huntersxy/cvhanser.jpg","die:ext:Huntersxy/audio/die/cvhanser.mp3"]],
+            "h_jiaxu":["male","xy","3/3",["h_jiaxu_8","reluanwu"],["des:御神贾诩","ext:Huntersxy/h_jiaxu.jpg","die:ext:Huntersxy/audio/die/h_jiaxu.mp3"]],
+            "h_spuyuan":["male","xy","3/3",["h_baohu","h_ronghe"],["des:炼器大师","ext:Huntersxy/h_spuyuan.jpg","die:ext:Huntersxy/audio/die/h_spuyuan.mp3"]],
+            "h_smaliang":["male","xy","3/3",["h_zhishu","h_yushu"],["des:妙笔生花","ext:Huntersxy/h_smaliang.jpg","die:ext:Huntersxy/audio/die/h_smaliang.mp3"]],
+            "h_bronya":["female","xy","3/3",["h_yuanji","h_sushe"],["ext:Huntersxy/h_bronya.jpg","die:ext:Huntersxy/audio/die/h_bronya.mp3"]],
+            "h_huohuo":["female","xy","3/3",["h_weiba"],["ext:Huntersxy/h_huohuo.jpg","die:ext:Huntersxy/audio/die/h_huohuo.mp3"]],
+            "h_huohuoweiba":["double","xy","4/6",["h_quhun"],["boss","forbidai","bossallowed","ext:Huntersxy/h_huohuoweiba.jpg","die:ext:Huntersxy/audio/die/h_huohuoweiba.mp3"]],
+            "h_ailixiya":["female","xy","3/12",["h_shiyuan","h_renlu"],["zhu","boss","bossallowed","ext:Huntersxy/h_ailixiya.jpg","die:ext:Huntersxy/audio/die/h_ailixiya.mp3"]],
+            "h_gx":["female","xy","3/3",["h_guanxin","h_xinqi","h_juxin"],["ext:Huntersxy/h_gx.jpg","die:ext:Huntersxy/audio/die/h_gx.mp3"]],
+            "h_geleixiu":["female","xy","2/2/1",["h_huishi","h_zhanyan"],["des:画笔，臣服于我","ext:Huntersxy/h_geleixiu.jpg","die:ext:Huntersxy/audio/die/h_geleixiu.mp3"]],
+            "h_yinlang":["female","xy","4/4",["h_stop","h_zhuru","h_download","h_yibu"],["ext:Huntersxy/h_yinlang.jpg","die:ext:Huntersxy/audio/die/h_yinlang.mp3"]],
+            "h_dwangping":["male","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:我的身后，是我所守护之处","ext:Huntersxy/h_dwangping.jpg","die:ext:Huntersxy/audio/die/h_dwangping.mp3"]],
         },
         translate:{
             cvhanser:"Hanser•唱歌憨",
@@ -1739,11 +1739,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
         return player.hujia>1&&player.hp>1;
     },
                 content:function(){
-        player.storage.msilian=player.hujia;
+        player.storage.h_pojia=player.hujia;
         player.changeHujia(-player.hujia);
         player.insertPhase();
     },
-                group:["msilian_hp","msilian_draw"],
+                group:["h_pojiafushu","h_pojiafushu2"],
                 subSkill:{
                     hp:{
                         trigger:{
@@ -1751,7 +1751,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                         },
                         silent:true,
                         filter:function(event,player){
-                return event.skill=='msilian'&&!player.getStat('damage');
+                return event.skill=='h_pojia'&&!player.getStat('damage');
             },
                         content:function(){
                 player.loseHp();
@@ -1766,11 +1766,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                             player:"phaseDrawBegin",
                         },
                         filter:function(event){
-                return event.getParent('phase').skill=='msilian';
+                return event.getParent('phase').skill=='h_pojia';
             },
                         silent:true,
                         content:function(){
-                trigger.num+=player.storage.msilian-2;
+                trigger.num+=player.storage.h_pojia-1;
             },
                         sub:true,
                         forced:true,
@@ -1779,6 +1779,38 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                     },
                 },
                 "_priority":0,
+            },
+            "h_pojiafushu":{
+                trigger:{
+                    player:"phaseDrawBegin",
+                },
+                filter:function(event){
+        return event.getParent('phase').skill=='h_pojia';
+    },
+                silent:true,
+                content:function(){
+        trigger.num+=player.storage.h_pojia-1;
+    },
+                sub:true,
+                forced:true,
+                popup:false,
+                "_priority":1,
+            },
+            "h_pojiafushu2":{
+                trigger:{
+                    player:"phaseDrawBegin",
+                },
+                filter:function(event){
+        return event.getParent('phase').skill=='h_pojia';
+    },
+                silent:true,
+                content:function(){
+        trigger.num+=player.storage.h_pojia-1;
+    },
+                sub:true,
+                forced:true,
+                popup:false,
+                "_priority":1,
             },
         },
         translate:{
@@ -1837,12 +1869,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
             "h_zhudi":"逐敌",
             "h_zhudi_info":"每回合限一次，你可以舍弃任意数量的护甲并对等量的角色造成一点伤害。",
             "h_pojia":"破甲",
-            "h_pojia_info":"回合结束时，若你有护甲，则你舍弃全部护甲并获得一个额外回合，该回合的摸牌数取决于你舍弃的护甲值，若你在额外回合中未造成伤害，则你失去一点体力。",
+            "h_pojia_info":"锁定技。回合结束时，若你有护甲，则你舍弃全部护甲并获得一个额外回合，该回合的额定摸牌数为你舍弃的护甲值的两倍，若你在额外回合中未造成伤害，则你失去一点体力。",
+            "h_pojiafushu":"破甲",
+            "h_pojiafushu_info":"",
+            "h_pojiafushu2":"破甲",
+            "h_pojiafushu2_info":"",
         },
     },
     intro:"烤箱插座阴间武将基于原版技能的简单魔改",
     author:"huntersxy",
     diskURL:"",
     forumURL:"",
-    version:"1.5",
+    version:"1.6",
 },files:{"character":["h_dwangping.jpg"],"card":[],"skill":[],"audio":[]}}})
