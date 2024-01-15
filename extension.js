@@ -14,8 +14,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
     character:{
         character:{
             cvhanser:["female","xy","3/5",["h_fc"],["des:著名CV","ext:Huntersxy/cvhanser.jpg","die:ext:Huntersxy/audio/die/cvhanser.mp3"]],
-            "h_jiaxu":["male","xy","3/3",["h_jiaxu_8","reluanwu"],["des:御神贾诩","ext:Huntersxy/h_jiaxu.jpg","die:ext:Huntersxy/audio/die/h_jiaxu.mp3"]],
-            "h_spuyuan":["male","xy","3/3",["h_baohu","h_ronghe"],["des:炼器大师","ext:Huntersxy/h_spuyuan.jpg","die:ext:Huntersxy/audio/die/h_spuyuan.mp3"]],
+            "h_jiaxu":["male","xy","3/3",["rewansha","reweimu","zyjianbing","yjzhenlve","yjjianshu","reluanwu","yjyongdi"],["des:御神贾诩","ext:Huntersxy/h_jiaxu.jpg","die:ext:Huntersxy/audio/die/h_jiaxu.mp3"]],
+            "h_spuyuan":["male","xy","3/3",["h_baohu","h_ronghe","olqisi","pyzhuren"],["des:炼器大师","ext:Huntersxy/h_spuyuan.jpg","die:ext:Huntersxy/audio/die/h_spuyuan.mp3"]],
             "h_smaliang":["male","xy","3/3",["h_zhishu","h_yushu"],["des:妙笔生花","ext:Huntersxy/h_smaliang.jpg","die:ext:Huntersxy/audio/die/h_smaliang.mp3"]],
             "h_bronya":["female","xy","3/3",["h_yuanji","h_sushe"],["ext:Huntersxy/h_bronya.jpg","die:ext:Huntersxy/audio/die/h_bronya.mp3"]],
             "h_huohuo":["female","xy","3/3",["h_weiba"],["ext:Huntersxy/h_huohuo.jpg","die:ext:Huntersxy/audio/die/h_huohuo.mp3"]],
@@ -23,7 +23,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
             "h_ailixiya":["female","xy","3/12",["h_shiyuan","h_renlu"],["zhu","boss","bossallowed","ext:Huntersxy/h_ailixiya.jpg","die:ext:Huntersxy/audio/die/h_ailixiya.mp3"]],
             "h_gx":["female","xy","3/3",["h_guanxin","h_xinqi","h_juxin"],["ext:Huntersxy/h_gx.jpg","die:ext:Huntersxy/audio/die/h_gx.mp3"]],
             "h_geleixiu":["female","xy","2/2/1",["h_huishi","h_zhanyan"],["des:画笔，臣服于我","ext:Huntersxy/h_geleixiu.jpg","die:ext:Huntersxy/audio/die/h_geleixiu.mp3"]],
-            "h_yinlang":["female","xy","4/4",["h_stop","h_zhuru","h_download","h_yibu"],["ext:Huntersxy/h_yinlang.jpg","die:ext:Huntersxy/audio/die/h_yinlang.mp3"]],
+            "h_yinlang":["female","xy","4/4",["h_stop","h_zhuru","h_download"],["ext:Huntersxy/h_yinlang.jpg","die:ext:Huntersxy/audio/die/h_yinlang.mp3"]],
             "h_dwangping":["male","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:我的身后，是我所守护之处","ext:Huntersxy/h_dwangping.jpg","die:ext:Huntersxy/audio/die/h_dwangping.mp3"]],
         },
         translate:{
@@ -51,10 +51,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
     skill:{
         skill:{
             "h_baohu":{
-                group:["moyao","pyzhuren","olqisi"],
                 mod:{
                     canBeDiscarded:function(card,player,target){
-            if(player!=target&&get.position(card)=='e'&&target.countCards('e')>=1) return false;
+        if(player!=target&&get.position(card)=='e'&&target.countCards('e')>=1) return false;
         },
                 },
                 audio:"ext:Huntersxy:2",
@@ -243,9 +242,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                     player:"phaseZhunbeiBegin",
                 },
                 forceunique:true,
-                content:function(){
-        'step 0'
-        player.addMark('憨',1);
+                content:function(){    
         'step 1'
         var list;
         if(_status.characterlist){
@@ -271,10 +268,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
             list.remove(players[i].name1);
             list.remove(players[i].name2);
         }
-        list.remove('bjbaimei');
         list.remove('cvhanser');
-        list.remove('白');
-        list.remove('万化憨');
         list=list.randomGets(3);
         var skills=[];
         for(var i of list){
@@ -383,16 +377,6 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
         player.draw(1);
     },
                 subSkill:{
-                    mark:{
-                        marktext:"憨",
-                        intro:{
-                            name:"憨色",
-                            content:"mark",
-                            onunmark:true,
-                        },
-                        sub:true,
-                        "_priority":0,
-                    },
                 },
                 "_priority":300,
             },
@@ -586,7 +570,6 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                         trigger:{
                             global:"phaseEnd",
                         },
-                        audio:"zishu",
                         forced:true,
                         sub:true,
                         "_priority":0,
@@ -596,7 +579,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                         "_priority":0,
                     },
                 },
-                group:["rewansha","reweimu","zyjianbing","yjzhenlve","yjjianshu","yjyongdi"],
+                group:["rewansha","reweimu","zyjianbing","yjzhenlve","yjjianshu"],
                 "_priority":0,
             },
             "h_yuanji":{
@@ -1582,79 +1565,6 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
     },
                 "_priority":0,
             },
-            "h_yibu":{
-                mod:{
-                    targetInRange:function (card,player,target){
-            if(player.countCards('j')&&player.inRange(target)){
-                return true;
-            }
-        },
-                    cardUsableTarget:function(card,player,target){
-            if(player.countCards('j')&&player.inRange(target)) return true;
-        },
-                    aiValue:function(player,card,num){
-            if(card.name=='zhangba') return 15;
-            if(player.getEquip('zhangba')&&player.countCards('hs')>1&&['shan','tao'].contains(card.name)) return 0;
-            if(card.name=='shan'||card.name=='tao') return num/2;
-        },
-                },
-                locked:false,
-                audio:"ext:Huntersxy:2",
-                enable:"phaseUse",
-                discard:false,
-                filter:function (event,player){
-        if(player.hasJudge('lebu')) return false;
-        return player.countCards('hes',{suit:'diamond'})>0;
-    },
-                viewAs:{
-                    name:"lebu",
-                },
-                position:"hes",
-                filterCard:function(card,player,event){
-        return get.suit(card)=='diamond'&&player.canAddJudge({name:'lebu',cards:[card]});
-    },
-                selectTarget:-1,
-                filterTarget:function (card,player,target){
-        return player==target;
-    },
-                check:function(card){
-        var player=_status.event.player;
-        if(!player.getEquip('zhangba')&&player.countCards('hs','sha')<2){
-            if(player.countCards('h',function(cardx){
-                return cardx!=card&&cardx.name=='shan';
-            })>0) return 0;
-            var damaged=player.maxHp-player.hp-1;
-            var ts=player.countCards('h',function(cardx){
-                return cardx!=card&&cardx.name=='tao';
-            });
-            if(ts>0&&ts>damaged) return 0;
-        }
-        if(card.name=='shan') return 15;
-        if(card.name=='tao') return 10;
-        return 9-get.value(card);
-    },
-                onuse:function (links,player){
-        var next=game.createEvent('limu_recover',false,_status.event.getParent());
-        next.player=player;
-        next.setContent(function(){player.recover()});
-    },
-                ai:{
-                    result:{
-                        target:1,
-                        ignoreStatus:true,
-                    },
-                    order:12,
-                    basic:{
-                        order:1,
-                        useful:1,
-                        value:8,
-                    },
-                    tag:{
-                        skip:"phaseUse",
-                    },
-                },
-                "_priority":0,
-            },
             "h_keyin":{
                 audio:"ext:烤箱魔改:2",
                 unique:true,
@@ -1860,8 +1770,6 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
             "h_zhuru_info":"出牌阶段限一次，你可选择一名其他角色。该角色获得〖八阵〗，且其所有不为{锁定技、限定技、觉醒技、主公技、带有Charlotte标签}的技能失效。你的下回合开始时，或其因〖八卦阵〗发起的判定结算结束后，你令其恢复其以此法失效的所有技能并失去以此法获得的〖八阵〗，然后获得其区域内的一张牌。",
             "h_download":"下载",
             "h_download_info":"结束阶段开始时，你将手牌补至体力上限。",
-            "h_yibu":"异步",
-            "h_yibu_info":"出牌阶段，你可以将一张♦牌当做【乐不思蜀】对自己使用，然后回复1点体力。只要你的判定区内有牌，你对攻击范围内的其他角色使用牌便没有次数和距离限制。",
             "h_keyin":"刻印",
             "h_keyin_info":"当你受到伤害后，你获得3个始源牌",
             "h_shouhu":"守护",
@@ -1869,16 +1777,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
             "h_zhudi":"逐敌",
             "h_zhudi_info":"每回合限一次，你可以舍弃任意数量的护甲并对等量的角色造成一点伤害。",
             "h_pojia":"破甲",
-            "h_pojia_info":"锁定技。回合结束时，若你有护甲，则你舍弃全部护甲并获得一个额外回合，该回合的额定摸牌数为你舍弃的护甲值的两倍，若你在额外回合中未造成伤害，则你失去一点体力。",
+            "h_pojia_info":"锁定技。回合结束时，若你有护甲，则你失去全部护甲并获得一个额外回合，该回合的摸牌数为你失去的护甲值的两倍，若你在额外回合中未造成伤害，则你失去一点体力。",
             "h_pojiafushu":"破甲",
-            "h_pojiafushu_info":"",
+            "h_pojiafushu_info":"破甲附属",
             "h_pojiafushu2":"破甲",
-            "h_pojiafushu2_info":"",
+            "h_pojiafushu2_info":"破甲附属",
         },
     },
     intro:"烤箱插座阴间武将基于原版技能的简单魔改",
     author:"huntersxy",
-    diskURL:"",
-    forumURL:"",
+    diskURL:"https://github.com/huntersxy/noname-huntersxy",
+    forumURL:"https://github.com/huntersxy/noname-huntersxy",
     version:"1.6",
 },files:{"character":["h_dwangping.jpg"],"card":[],"skill":[],"audio":[]}}})
