@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Huntersxy",content:function(config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"noname-huntersxy",content:function(config,pack){
   lib.group.addArray(['xy']);
         lib.qy_group = ['xy']; //自己的自定义势力列表
         /************伳************/
@@ -13,18 +13,18 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
 },help:{},config:{},package:{
     character:{
         character:{
-            cvhanser:["female","xy","3/5",["h_fc"],["des:著名CV","ext:Huntersxy/cvhanser.jpg","die:ext:Huntersxy/audio/die/cvhanser.mp3"]],
-            "h_jiaxu":["male","xy","3/3",["rewansha","reweimu","zyjianbing","yjzhenlve","yjjianshu","reluanwu","yjyongdi"],["des:御神贾诩","ext:Huntersxy/h_jiaxu.jpg","die:ext:Huntersxy/audio/die/h_jiaxu.mp3"]],
-            "h_spuyuan":["male","xy","3/3",["h_baohu","h_ronghe","olqisi","pyzhuren"],["des:炼器大师","ext:Huntersxy/h_spuyuan.jpg","die:ext:Huntersxy/audio/die/h_spuyuan.mp3"]],
-            "h_smaliang":["male","xy","3/3",["h_zhishu","h_yushu"],["des:妙笔生花","ext:Huntersxy/h_smaliang.jpg","die:ext:Huntersxy/audio/die/h_smaliang.mp3"]],
-            "h_bronya":["female","xy","3/3",["h_yuanji","h_sushe"],["ext:Huntersxy/h_bronya.jpg","die:ext:Huntersxy/audio/die/h_bronya.mp3"]],
-            "h_huohuo":["female","xy","3/3",["h_weiba"],["ext:Huntersxy/h_huohuo.jpg","die:ext:Huntersxy/audio/die/h_huohuo.mp3"]],
-            "h_huohuoweiba":["double","xy","4/6",["h_quhun"],["boss","forbidai","bossallowed","ext:Huntersxy/h_huohuoweiba.jpg","die:ext:Huntersxy/audio/die/h_huohuoweiba.mp3"]],
-            "h_ailixiya":["female","xy","3/12",["h_shiyuan","h_renlu"],["zhu","boss","bossallowed","ext:Huntersxy/h_ailixiya.jpg","die:ext:Huntersxy/audio/die/h_ailixiya.mp3"]],
-            "h_gx":["female","xy","3/3",["h_guanxin","h_xinqi","h_juxin"],["ext:Huntersxy/h_gx.jpg","die:ext:Huntersxy/audio/die/h_gx.mp3"]],
-            "h_geleixiu":["female","xy","2/2/1",["h_huishi","h_zhanyan"],["des:画笔，臣服于我","ext:Huntersxy/h_geleixiu.jpg","die:ext:Huntersxy/audio/die/h_geleixiu.mp3"]],
-            "h_yinlang":["female","xy","4/4",["h_stop","h_zhuru","h_download"],["ext:Huntersxy/h_yinlang.jpg","die:ext:Huntersxy/audio/die/h_yinlang.mp3"]],
-            "h_dwangping":["male","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:我的身后，是我所守护之处","ext:Huntersxy/h_dwangping.jpg","die:ext:Huntersxy/audio/die/h_dwangping.mp3"]],
+            cvhanser:["female","xy","3/5",["h_fc"],["des:著名CV","ext:noname-huntersxy/cvhanser.jpg","die:ext:noname-huntersxy/audio/die/cvhanser.mp3"]],
+            "h_jiaxu":["male","xy","3/3",["rewansha","reweimu","zyjianbing","yjzhenlve","yjjianshu","reluanwu","yjyongdi"],["des:御神贾诩","ext:noname-huntersxy/h_jiaxu.jpg","die:ext:noname-huntersxy/audio/die/h_jiaxu.mp3"]],
+            "h_spuyuan":["male","xy","3/3",["h_baohu","h_ronghe","olqisi","pyzhuren"],["des:炼器大师","ext:noname-huntersxy/h_spuyuan.jpg","die:ext:noname-huntersxy/audio/die/h_spuyuan.mp3"]],
+            "h_smaliang":["male","xy","3/3",["h_zhishu","h_yushu"],["des:妙笔生花","ext:noname-huntersxy/h_smaliang.jpg","die:ext:noname-huntersxy/audio/die/h_smaliang.mp3"]],
+            "h_bronya":["female","xy","3/3",["h_yuanji","h_sushe"],["ext:noname-huntersxy/h_bronya.jpg","die:ext:noname-huntersxy/audio/die/h_bronya.mp3"]],
+            "h_huohuo":["female","xy","3/3",["h_weiba"],["ext:noname-huntersxy/h_huohuo.jpg","die:ext:noname-huntersxy/audio/die/h_huohuo.mp3"]],
+            "h_huohuoweiba":["double","xy","4/6",["h_quhun"],["boss","forbidai","bossallowed","ext:noname-huntersxy/h_huohuoweiba.jpg","die:ext:noname-huntersxy/audio/die/h_huohuoweiba.mp3"]],
+            "h_ailixiya":["female","xy","3/12",["h_shiyuan","h_renlu"],["zhu","boss","bossallowed","ext:noname-huntersxy/h_ailixiya.jpg","die:ext:noname-huntersxy/audio/die/h_ailixiya.mp3"]],
+            "h_gx":["female","xy","3/3",["h_guanxin","h_xinqi","h_juxin"],["ext:noname-huntersxy/h_gx.jpg","die:ext:noname-huntersxy/audio/die/h_gx.mp3"]],
+            "h_geleixiu":["female","xy","2/2/1",["h_huishi","h_zhanyan"],["des:画笔，臣服于我","ext:noname-huntersxy/h_geleixiu.jpg","die:ext:noname-huntersxy/audio/die/h_geleixiu.mp3"]],
+            "h_yinlang":["female","xy","4/4",["h_stop","h_zhuru","h_download"],["ext:noname-huntersxy/h_yinlang.jpg","die:ext:noname-huntersxy/audio/die/h_yinlang.mp3"]],
+            "h_dwangping":["male","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:我的身后，是我所守护之处","ext:noname-huntersxy/h_dwangping.jpg","die:ext:noname-huntersxy/audio/die/h_dwangping.mp3"]],
         },
         translate:{
             cvhanser:"Hanser•唱歌憨",
@@ -56,7 +56,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
         if(player!=target&&get.position(card)=='e'&&target.countCards('e')>=1) return false;
         },
                 },
-                audio:"ext:Huntersxy:2",
+                audio:"ext:noname-huntersxy:2",
                 trigger:{
                     target:"useCardToTargeted",
                 },
@@ -729,7 +729,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                 "_priority":0,
             },
             "自爆":{
-                audio:"ext:Huntersxy:2",
+                audio:"ext:noname-huntersxy:2",
                 enable:"phaseUse",
                 prompt:"失去1点体力并摸两张牌",
                 content:function(){
@@ -1257,7 +1257,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                 "_priority":0,
             },
             "h_huishi":{
-                audio:"ext:Huntersxy:2",
+                audio:"ext:noname-huntersxy:2",
                 enable:"chooseToUse",
                 group:["h_huishi_limit"],
                 filter:function(event,player){
@@ -1357,7 +1357,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                 "_priority":0,
             },
             "h_zhanyan":{
-                audio:"ext:Huntersxy:2",
+                audio:"ext:noname-huntersxy:2",
                 trigger:{
                     player:["loseAfter","changeHp","gainMaxHpAfter","loseMaxHpAfter"],
                     global:["equipAfter","addJudgeAfter","gainAfter","loseAsyncAfter","addToExpansionAfter"],
@@ -1381,7 +1381,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                 "_priority":0,
             },
             "h_stop":{
-                audio:"ext:Huntersxy:2",
+                audio:"ext:noname-huntersxy:2",
                 usable:99999,
                 trigger:{
                     global:"judgeFixing",
@@ -1436,7 +1436,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
                 "_priority":0,
             },
             "h_zhuru":{
-                audio:"ext:Huntersxy:2",
+                audio:"ext:noname-huntersxy:2",
                 enable:"phaseUse",
                 usable:1,
                 filterTarget:function(card,player,target){
@@ -1785,7 +1785,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"Hunte
         },
     },
     intro:"烤箱插座阴间武将基于原版技能的简单魔改",
-    author:"huntersxy",
+    author:"noname-huntersxy",
     diskURL:"https://github.com/huntersxy/noname-huntersxy",
     forumURL:"https://github.com/huntersxy/noname-huntersxy",
     version:"1.6",
