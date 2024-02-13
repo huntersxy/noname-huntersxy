@@ -1,0 +1,1 @@
+copy D:\Game\Noname\resources\app\extension\noname-huntersxy\skill\test.js .\h_test.js
