@@ -63,7 +63,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
             "h_geleixiu":["female","xy","2/2/1",["h_huishi","h_zhanyan","h_linmu"],["des:画笔，臣服于我"]],
             "h_yinlang":["female","xy","4/4",["h_stop","h_zhuru","h_download"],["ext:noname-huntersxy/h_yinlang.jpg","die:ext:noname-huntersxy/audio/die/h_yinlang.mp3"]],
             "h_zhenji":["female","xy","4/4",["h_mosha","h_shenlin","paoxiao"],[]],
-            "h_inbronya":["female","xy",Infinity,["h_mosha","h_shagod","h_xinqi","h_yuanji","paoxiao"],[]],
+            "h_inbronya":["female","xy",Infinity,["h_mosha","h_shagod","h_xinqi","h_yuanji","paoxiao"],["forbidai"]],
             "h_sxjqingque":["female","xy",3,["h_dugou","qinzheng"],["des:哪有赌狗天天输"]],
             "h_husixiyu":["female","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:守护己身，护世之铭"]],
             "h_puluomixiushi":["female","xy","3/3",["h_shagod","h_bhyz"],["des:崩坏意志，机械之躯难以磨灭"]],
@@ -131,4 +131,4 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
     diskURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
     forumURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
     version:"2.0",
-},files:{"character":["h_smaliang.jpg","h_huohuoweiba.jpg","h_spuyuan.jpg","cvhanser.jpg","h_geleixiu.jpg","h_ailixiya.jpg","h_jiaxu.jpg","h_bronya.jpg","h_huohuo.jpg","h_yinlang.jpg","h_inbronya.jpg","h_sxjqingque.jpg","h_zhenji.jpg","h_gx.jpg","h_puluomixiushi.jpg","h_husixiyu.jpg"],"card":[],"skill":[],"audio":[]}}})
+},files:{"character":["h_spuyuan.jpg","h_bronya.jpg","cvhanser.jpg","h_yinlang.jpg","h_ailixiya.jpg","h_geleixiu.jpg","h_huohuo.jpg","h_jiaxu.jpg","h_huohuoweiba.jpg","h_smaliang.jpg","h_sxjqingque.jpg","h_inbronya.jpg","h_zhenji.jpg","h_gx.jpg","h_husixiyu.jpg","h_puluomixiushi.jpg"],"card":[],"skill":[],"audio":[]}}})
