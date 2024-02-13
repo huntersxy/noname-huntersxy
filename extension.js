@@ -14,7 +14,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
 
 },precontent:function (huntersxy) {
             if (huntersxy.enable) {
-            lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/tw.js', null);
+            lib.init.js(lib.assetURL + 'extension/noname-huntersxy/huntersxy/huntersxy.js', null);
             
             //角色技能外置
             lib.init.js(lib.assetURL + 'extension/noname-huntersxy/skill/普罗米修斯.js', null);
@@ -34,16 +34,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
             lib.init.js(lib.assetURL + 'extension/noname-huntersxy/skill/真纪.js', null);
             lib.init.js(lib.assetURL + 'extension/noname-huntersxy/skill/真纪.js', null);
             
-            /* lib.config.all.characters.push('huntersxy6');
-                lib.translate['huntersxy6_character_config'] = "huntersxy";// 包名翻译                       
-                   if(!lib.config.characters.includes('character')&&!lib.config.extension_huntersxy6_autoOpenPack){
+            lib.config.all.characters.push('huntersxy');
+                lib.translate['huntersxy_character_config'] = "Huntersxy";// 包名翻译                       
+                   if(!lib.config.characters.includes('character')&&!lib.config.extension_huntersxy_autoOpenPack){
             lib.config.characters.push('character')
             game.saveConfig('characters',lib.config.characters)
-            game.saveConfig('extension_huntersxy6_autoOpenPack', true)
+            game.saveConfig('extension_huntersxy_autoOpenPack', true)
         }
                   window.JINQU_import  = function (func) {
             func(lib, game, ui, get, ai, _status);
-        }; */
+        };
         
  
         
@@ -64,8 +64,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
             "h_yinlang":["female","xy","4/4",["h_stop","h_zhuru","h_download"],["ext:noname-huntersxy/h_yinlang.jpg","die:ext:noname-huntersxy/audio/die/h_yinlang.mp3"]],
             "h_zhenji":["female","xy","4/4",["h_mosha","h_shenlin","paoxiao"],[]],
             "h_inbronya":["female","xy",Infinity,["h_mosha","h_shagod","h_xinqi","h_yuanji","paoxiao"],["forbidai"]],
-            "h_sxjqingque":["female","xy",3,["h_dugou","qinzheng"],["des:哪有赌狗天天输"]],
-            "h_husixiyu":["female","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:守护己身，护世之铭"]],
+            "h_sxjqingque":["female","xy",3,["h_dugou","qinzheng"],["des:哪有赌狗天天输","ext:noname-huntersxy/h_sxjqingque.jpg"]],
+            "h_husixiyu":["female","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:守护己身，护世之铭","ext:noname-huntersxy/h_husixiyu.jpg"]],
             "h_puluomixiushi":["female","xy","3/3",["h_shagod","h_bhyz"],["des:崩坏意志，机械之躯难以磨灭"]],
         },
         translate:{
@@ -96,34 +96,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
     },
     skill:{
         skill:{
-            "h_boom":{
-                audio:"ext:noname-huntersxy:2",
-                enable:"phaseUse",
-                prompt:"失去1点体力并摸两张牌",
-                content:function(){
-        "step 0"
-        player.loseHp(10);
-        "step 1"
-        player.init('h_boom');
-    },
-                ai:{
-                    basic:{
-                        order:1,
-                    },
-                    result:{
-                        player:function(player){
-                if(player.countCards('h')>=player.hp-1) return -1;
-                if(player.hp<3) return -1;
-                return 1;
-            },
-                    },
-                },
-                "_priority":0,
-            },
         },
         translate:{
-            "h_boom":"自爆",
-            "h_boom_info":"出牌阶段，你可以失去10点体力，然后变成武将牌代码为h_boom的东西",
         },
     },
     intro:"烤箱插座阴间武将基于原版技能的简单魔改",
@@ -131,4 +105,4 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
     diskURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
     forumURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
     version:"2.0",
-},files:{"character":["h_spuyuan.jpg","h_bronya.jpg","cvhanser.jpg","h_yinlang.jpg","h_ailixiya.jpg","h_geleixiu.jpg","h_huohuo.jpg","h_jiaxu.jpg","h_huohuoweiba.jpg","h_smaliang.jpg","h_sxjqingque.jpg","h_inbronya.jpg","h_zhenji.jpg","h_gx.jpg","h_husixiyu.jpg","h_puluomixiushi.jpg"],"card":[],"skill":[],"audio":[]}}})
+},files:{"character":["h_spuyuan.jpg","h_smaliang.jpg","h_huohuoweiba.jpg","cvhanser.jpg","h_jiaxu.jpg","h_bronya.jpg","h_geleixiu.jpg","h_inbronya.jpg","h_ailixiya.jpg","h_gx.jpg","h_huohuo.jpg","h_sxjqingque.jpg","h_husixiyu.jpg","h_yinlang.jpg","h_zhenji.jpg","h_puluomixiushi.jpg"],"card":[],"skill":[],"audio":[]}}})
