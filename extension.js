@@ -7,7 +7,12 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
         lib.groupnature.xy = 'xy';
         lib.translate.xyColor = "#ebbd07";
         /************伳************/
-          
+  
+        //以下是备注
+//v2.0 基于1.10.7.1
+
+
+
 },precontent:function(){
     
 },help:{},config:{},package:{
@@ -1880,6 +1885,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
      
 
     },
+                "_priority":0,
             },
             "h_sha":{
                 audio:"ext:noname-huntersxy:2",
@@ -1896,6 +1902,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
                 if(card) player.gain(card,'gain2');
     },
                 popup:false,
+                "_priority":1,
             },
             "h_dugou":{
                 trigger:{
@@ -1966,7 +1973,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
                     player:"phaseZhunbeiBegin",
                 },
                 filter:function(event,player){
-        if(player.storage.oltishen) return false;
+        
         return player.isDamaged();
     },
                 check:function(event,player){
@@ -1975,14 +1982,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
         return player.getDamagedHp()<game.roundNumber;
     },
                 content:function(){
-        //player.awakenSkill('oltishen');
+        
         player.recover(player.maxHp-player.hp);
         player.draw(player.maxHp-player.hp);
     },
-                intro:{
-                    content:"limited",
-                },
-                init:(player, skill) => player.storage[skill] = false,
             },
         },
         translate:{
@@ -2062,5 +2065,5 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
     author:"noname-huntersxy",
     diskURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
     forumURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
-    version:"1.8",
-},files:{"character":["h_puluomixiushi.jpg"],"card":[],"skill":[],"audio":[]}}})
+    version:"2.0",
+},files:{"character":["h_spuyuan.jpg","h_smaliang.jpg","h_huohuoweiba.jpg","cvhanser.jpg","h_jiaxu.jpg","h_bronya.jpg","h_geleixiu.jpg","h_inbronya.jpg","h_ailixiya.jpg","h_huohuo.jpg","h_gx.jpg","h_yinlang.jpg","h_sxjqingque.jpg","h_husixiyu.jpg","h_zhenji.jpg","h_puluomixiushi.jpg"],"card":[],"skill":[],"audio":[]}}})
