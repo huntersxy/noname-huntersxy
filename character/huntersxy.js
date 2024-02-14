@@ -3,6 +3,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
 		name:'huntersxy',
 		connect:true,
 		character:{
+
             "cvhanser":["female","xy","3/5",["h_fc"],["des:著名CV","ext:noname-huntersxy/character/image/cvhanser.jpg","die:ext:noname-huntersxy/audio/die/cvhanser.mp3"]],
             "h_jiaxu":["male","xy","3/3",["rewansha","reweimu","zyjianbing","yjzhenlve","yjjianshu","reluanwu","yjyongdi"],["des:御神贾诩","ext:noname-huntersxy/character/image/h_jiaxu.jpg","die:ext:noname-huntersxy/audio/die/h_jiaxu.mp3"]],
             "h_spuyuan":["male","xy","3/3",["h_baohu","h_ronghe","olqisi","pyzhuren"],["des:炼器大师","ext:noname-huntersxy/character/image/h_spuyuan.jpg","die:ext:noname-huntersxy/audio/die/h_spuyuan.mp3"]],
@@ -19,59 +20,21 @@ game.import('character',function(lib,game,ui,get,ai,_status){
             "h_husixiyu":["female","xy","1/5/4",["h_shouhu","h_zhudi","h_pojia"],["des:守护己身，护世之铭","ext:noname-huntersxy/character/image/h_husixiyu.jpg"]],
             "h_puluomixiushi":["female","xy","3/3",["h_shagod","h_bhyz"],["des:崩坏意志，机械之躯难以磨灭","ext:noname-huntersxy/character/image/h_puluomixiushi.jpg"]],
             "h_inbronya":["female","xy",Infinity,["h_mosha","h_shagod","h_xinqi","h_yuanji","paoxiao"],["forbidai","ext:noname-huntersxy/character/image/h_inbronya.jpg"]],
-		},
-		characterIntro:{
 
-		},
-		card:{
-
-		},
-		skill:{
-			"h_boom":{
-                audio:"ext:noname-huntersxy:2",
-                enable:"phaseUse",
-                prompt:"失去1点体力并摸两张牌",
-                content:function(){
-        "step 0"
-        player.loseHp(10);
-        "step 1"
-        player.init('h_boom');
-    },
-                ai:{
-                    basic:{
-                        order:1,
-                    },
-                    result:{
-                        player:function(player){
-                if(player.countCards('h')>=player.hp-1) return -1;
-                if(player.hp<3) return -1;
-                return 1;
-            },
-                    },
-                },
-                "_priority":0,
-            },
-
-		},
-       
+        },
+		skill:{},
         characterSort:{
             huntersxy:{
+
                 hanser:["cvhanser",,],
                 bh3:["h_bronya","h_inbronya","h_puluomixiushi","h_geleixiu","h_ailixiya","h_gx"],
                 xqtd:["h_huohuo","h_huohuoweiba","h_sxjqingque","h_yinlang"],
                 ybs:["h_spuyuan","h_jiaxu","h_smaliang"],
+
             },
         },
-		perfectPair:{
-			
-		},
-		characterReplace:{
-			
-		},
-		dynamicTranslate:{},
 		translate:{
-			"h_boom":"自爆",
-            "h_boom_info":"出牌阶段，你可以失去10点体力，然后变成武将牌代码为h_boom的东西",
+
 			"cvhanser":"Hanser•唱歌憨",
             "h_jiaxu":"神贾诩",
             "h_spuyuan":"神蒲元",
@@ -92,9 +55,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
             bh3:"崩坏三",
             xqtd:"星穹铁道",
             ybs:"原版逆天魔改"
+
 		},
-		pinyins:{
-			
-		}
 	};
 });
