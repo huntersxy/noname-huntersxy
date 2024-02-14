@@ -1,18 +1,15 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"noname-huntersxy",content:function(config,pack){
             lib.group.addArray(['xy']);
             lib.qy_group = ['xy']; //自己的自定义势力列表
-            /************伳************/
             lib.translate.xy = '伳';
             lib.translate.xy2 = '伳';
             lib.groupnature.xy = 'xy';
             lib.translate.xyColor = "#ebbd07";
-            /************伳************/
-  
             //以下是备注
             //v2.0 基于1.10.7.1
         },precontent:function (huntersxy) {
             if (huntersxy.enable) { 
-            //角色技能外置
+                //初代角色技能外置，后续只要能用就不外置
                 lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/普罗米修斯.js', null);
                 lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/汐屿.js', null);
                 lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/cvhanser.js', null);
@@ -37,7 +34,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
                     game.saveConfig('characters',lib.config.characters)
                     game.saveConfig('extension_huntersxy_autoOpenPack', true)
                 }
-                window.JINQU_import  = function (func) {
+                window.JINQU_import = function (func) {
                     func(lib, game, ui, get, ai, _status);
                 };
             }
