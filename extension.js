@@ -1,9 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){
-    return {
-        name:"noname-huntersxy",
-        
-        content:
-        function(config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"noname-huntersxy",content:function(config,pack){
             lib.group.addArray(['xy']);
             lib.qy_group = ['xy']; //自己的自定义势力列表
             /************伳************/
@@ -15,11 +10,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){
   
             //以下是备注
             //v2.0 基于1.10.7.1
-        },
-        
-
-        precontent:
-        function (huntersxy) {
+        },precontent:function (huntersxy) {
             if (huntersxy.enable) { 
             //角色技能外置
                 lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/普罗米修斯.js', null);
@@ -50,55 +41,29 @@ game.import("extension",function(lib,game,ui,get,ai,_status){
                     func(lib, game, ui, get, ai, _status);
                 };
             }
+        },help:{},config:{},package:{
+    character:{
+        character:{
         },
-
-        help:{},
-        config:{},
-        package:{
-
-            character:{
-
-                character:{
-
-                },
-                translate:{
-
-                },
-            },
-            card:{
-                card:{
-
-                },
-                translate:{
-
-                },
-                list:[
-
-                ],
-            },
-            skill:{
-                skill:{
-
-                },
-                translate:{
-
-                },
-
-            },
-            intro:"烤箱插座阴间武将基于原版技能的简单魔改,名为noname-huntersxy的武将包是测试用的",
-            author:"noname-huntersxy",
-            diskURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
-            forumURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
-            version:"2.0",
+        translate:{
         },
-        
-
-        files:{
-            "character":["h_spuyuan.jpg","h_smaliang.jpg","h_huohuoweiba.jpg","cvhanser.jpg","h_bronya.jpg","h_jiaxu.jpg","h_geleixiu.jpg","h_inbronya.jpg","h_ailixiya.jpg","h_huohuo.jpg","h_gx.jpg","h_sxjqingque.jpg","h_yinlang.jpg","h_husixiyu.jpg","h_zhenji.jpg","h_puluomixiushi.jpg"],
-            "card":[],
-            "skill":[],
-            "audio":[]
-        }
-    }
-}
-)
+    },
+    card:{
+        card:{
+        },
+        translate:{
+        },
+        list:[],
+    },
+    skill:{
+        skill:{
+        },
+        translate:{
+        },
+    },
+    intro:"烤箱插座阴间武将基于原版技能的简单魔改,名为noname-huntersxy的武将包是测试用的",
+    author:"noname-huntersxy",
+    diskURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
+    forumURL:"https://github.com/noname-huntersxy/noname-noname-huntersxy",
+    version:"2.0",
+},files:{"character":[],"card":[],"skill":[],"audio":[]}}})
