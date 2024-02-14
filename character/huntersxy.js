@@ -3,7 +3,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
 		name:'huntersxy',
 		connect:true,
 		character:{
-
+            "h_ssxier":["female","xy",3,["h_ss","深海","h_xier1"],["des:死生之律者","ext:noname-huntersxy/character/image/h_ssxier.jpg"]],
             "cvhanser":["female","xy","3/5",["h_fc"],["des:著名CV","ext:noname-huntersxy/character/image/cvhanser.jpg","die:ext:noname-huntersxy/audio/die/cvhanser.mp3"]],
             "h_jiaxu":["male","xy","3/3",["rewansha","reweimu","zyjianbing","yjzhenlve","yjjianshu","reluanwu","yjyongdi"],["des:御神贾诩","ext:noname-huntersxy/character/image/h_jiaxu.jpg","die:ext:noname-huntersxy/audio/die/h_jiaxu.mp3"]],
             "h_spuyuan":["male","xy","3/3",["h_baohu","h_ronghe","olqisi","pyzhuren"],["des:炼器大师","ext:noname-huntersxy/character/image/h_spuyuan.jpg","die:ext:noname-huntersxy/audio/die/h_spuyuan.mp3"]],
@@ -34,7 +34,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
             },
         },
 		translate:{
-
+            "h_ssxier":"希儿",
 			"cvhanser":"Hanser•唱歌憨",
             "h_jiaxu":"神贾诩",
             "h_spuyuan":"神蒲元",
