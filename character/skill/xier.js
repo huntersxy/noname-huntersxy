@@ -1,13 +1,13 @@
 game.import('character',function(lib,game,ui,get,ai,_status){
 	return {
-		name:'huntersxy2',
+		name:'xier',
 		connect:true,
 		character:{
 
         },
 		skill:{
             "h_ss":{
-                audio:"ext:开发专用:2",
+                audio:"ext:noname-huntersxy:2",
                 trigger:{
                     global:"damageBefore",
                 },
@@ -81,7 +81,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
                 "_priority":0,
             },
             "h_quanbing":{
-                audio:"ext:开发专用:2",
+                audio:"ext:noname-huntersxy:2",
                 trigger:{
                     global:"judge",
                 },
@@ -202,7 +202,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
                 "_priority":0,
             },
             "深海":{
-                audio:"ext:开发专用:2",
+                audio:"ext:noname-huntersxy:2",
                 audioname:["sb_xiaoqiao"],
                 mod:{
                     suit:function(card,suit){
@@ -268,7 +268,50 @@ game.import('character',function(lib,game,ui,get,ai,_status){
                 },
                 "_priority":0,
             },
-        
+            "h_shilv":{
+                    trigger:{
+                        player:"damageEnd",
+                    },
+                    locked:true,
+                    forced:true,
+                    filter:function(event,player){
+                        return (event.source);
+                    },
+                    direct:true,
+                    checkx:function(event,player){
+                        var att1=get.attitude(player,event.player);
+                        var att2=get.attitude(player,event.source);
+                        return att1>0&&att2<=0;
+                    },
+                    logTarget:"source",
+                    preHidden:true,
+                    content:function(){
+                        "step 0"
+                        trigger.source.addTempSkill("guicai");
+                        trigger.source.addTempSkill("mbzhixi");
+                        player.changeHujia();
+                        trigger.source.judge();
+                        "step 1"
+                        switch(result.suit){
+                            case 'spade':trigger.source.chooseToDisable();break;
+                            case 'heart':trigger.source.addSkill('ranshang');break;
+                            case 'diamond':trigger.source.clearSkills();break;
+                            case 'club':trigger.source.discard(trigger.source.getCards('he'));break;
+                        }
+                    },
+                    ai:{
+                        "maixie_defend":true,
+                        effect:{
+                            target(card,player,target){
+                                if(player.hasSkillTag('jueqing',false,target)) return [1,-1];
+                                return 0.8;
+                            },
+                        },
+                    },
+                    "_priority":0,
+                
+                
+            },
 		},
         characterSort:{
             
@@ -287,6 +330,8 @@ game.import('character',function(lib,game,ui,get,ai,_status){
             "深海_info":"锁定技。你的梅花视为方块，你的黑桃视为红桃。当场上有判定结果为红心时，你可以修改该结果的花色。",
             "h_xier1":"h_xier1",
             "h_xier1_info":"",
+            "h_shilv":"死律",
+            "h_shilv_info":"锁定技，当你受到伤害后，①你获得一点护盾，伤害来源获得技能[鬼才][止息]至本回合结束。②伤害来源进行判定，若结果为黑桃：其选择一个装备栏废除。红桃:其获得技能[燃殇]。梅花:其弃置所有牌。方块:其所有技能被清除。",
 		},
 	};
 });
