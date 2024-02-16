@@ -288,15 +288,24 @@ game.import('character',function(lib,game,ui,get,ai,_status){
                     content:function(){
                         "step 0"
                         trigger.source.addTempSkill("guicai");
-                        trigger.source.addTempSkill("mbzhixi");
+                        
                         player.changeHujia();
                         trigger.source.judge();
                         "step 1"
                         switch(result.suit){
-                            case 'spade':trigger.source.chooseToDisable();break;
-                            case 'heart':trigger.source.addSkill('ranshang');break;
-                            case 'diamond':trigger.source.clearSkills();break;
-                            case 'club':trigger.source.discard(trigger.source.getCards('he'));break;
+                            case 'spade':
+                                trigger.source.chooseToDisable();
+                            break;
+                            case 'heart':
+                                trigger.source.addSkill('ranshang');
+                                trigger.source.addTempSkill("mbzhixi");
+                                break;
+                            case 'diamond':
+                                trigger.source.clearSkills();
+                                break;
+                            case 'club':
+                                trigger.source.discard(trigger.source.getCards('he'));
+                                break;
                         }
                     },
                     ai:{

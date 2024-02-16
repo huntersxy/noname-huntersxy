@@ -36,7 +36,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
         },
 		translate:{
             "h_ssxier":"希儿",
-            "h_heixier":"希儿",
+            "h_heixier":"黑希",
 			"cvhanser":"Hanser•唱歌憨",
             "h_jiaxu":"神贾诩",
             "h_spuyuan":"神蒲元",
