@@ -1,14 +1,14 @@
-game.import('character',function(lib,game,ui,get,ai,_status){
+game.import('character', function (lib, game, ui, get, ai, _status) {
 	return {
-		name:'名字',
-		connect:true,
-		skill:{
-                //这里放技能
+		name: '名字',
+		connect: true,
+		skill: {
+			//这里放技能
 
 
 		},
-		translate:{
-                //这里放描述			
+		translate: {
+			//这里放描述			
 
 
 
