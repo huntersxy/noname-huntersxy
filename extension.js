@@ -25,13 +25,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"nonam
                 lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/神蒲元.js', null);
                 lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/永恒布洛妮娅.js', null);
                 lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/xier.js', null);
+                //lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/xier.js', null);
 
                         
                 //引用角色包
                 lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/huntersxy.js', null);
                 lib.config.all.characters.push('huntersxy');
-                lib.translate['huntersxy_character_config'] = "Huntersxy";// 包名翻译  
-
+                lib.translate['huntersxy_character_config'] = "Huntersxy";//包名翻译
                 if(!lib.config.characters.includes('character')&&!lib.config.extension_huntersxy_autoOpenPack){
                     lib.config.characters.push('character')
                     game.saveConfig('characters',lib.config.characters)

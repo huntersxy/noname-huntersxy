@@ -2,9 +2,6 @@ game.import('character',function(lib,game,ui,get,ai,_status){
 	return {
 		name:'xier',
 		connect:true,
-		character:{
-
-        },
 		skill:{
             "h_ss":{
                 audio:"ext:noname-huntersxy:2",
@@ -417,7 +414,6 @@ game.import('character',function(lib,game,ui,get,ai,_status){
             
         },
 		translate:{
-            
             "h_ss":"死生",
             "h_ss_info":"当场上有角色即将受到来源为牌的伤害时，你可弃一张牌对其进行判定。若判定结果为①黑桃：发动罪罚，其横置，并受到两点雷电伤害。②梅花：发动湮灭，其减少一点体力上限，翻面并且本回合非锁定技失效。③红桃：发动不息，其增加一点体力上限并回复一点体力，你回复一点体力④方块：发动赐福，其他角色无法对其使用牌。判定结束后，你摸一张牌。",
             "h_quanbing":"权柄",

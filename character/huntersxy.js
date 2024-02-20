@@ -52,12 +52,10 @@ game.import('character',function(lib,game,ui,get,ai,_status){
 		skill:{},
         characterSort:{
             huntersxy:{
-
                 hanser:["h_cvhanser",],
                 bh3:["h_bronya","h_bronya_Infinity","h_puluomixiushi","h_geleixiu","h_ailixiya","h_guanxing","h_baixier","h_heixier"],
                 xqtd:["h_huohuo","h_huohuoweiba","h_qingque","h_yinlang"],
                 ybs:["h_puyuan","h_jiaxu","h_maliang"],
-
             },
         },
 		translate:{
