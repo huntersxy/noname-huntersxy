@@ -272,7 +272,6 @@ game.import('character',function(lib,game,ui,get,ai,_status){
                     trigger:{
                         player:"damageEnd",
                     },
-                    locked:true,
                     forced:true,
                     filter:function(event,player){
                         return (event.source);
@@ -288,24 +287,30 @@ game.import('character',function(lib,game,ui,get,ai,_status){
                     content:function(){
                         "step 0"
                         trigger.source.addTempSkill("guicai");
-                        
-                        player.changeHujia();
                         trigger.source.judge();
                         "step 1"
                         switch(result.suit){
                             case 'spade':
-                                trigger.source.chooseToDisable();
+                            trigger.source.chooseToDisable();
+                            trigger.source.chooseToDisable();
+                            trigger.source.mark('♠︎️︎',{content:'废除了两个装备栏'});
                             break;
                             case 'heart':
-                                trigger.source.addSkill('ranshang');
-                                trigger.source.addTempSkill("mbzhixi");
-                                break;
+                            trigger.source.addTempSkill('new_zhixi','phaseUseAfter');
+
+                            //trigger.source.mark('♥︎️︎',{content:'止息一下'},1,false);
+                            trigger.source.markSkillCharacter('new_meibu',player,'♥︎️︎','锁定技，出牌阶段，你至多可使用X张牌，你使用了锦囊牌后不能再使用牌（X为你的体力值）。');
+                            break;
                             case 'diamond':
-                                trigger.source.clearSkills();
-                                break;
+                            trigger.source.addSkill("fengyin");
+                            trigger.source.mark('♦',{content:'封印了非锁定技能'});
+                            break;
                             case 'club':
-                                trigger.source.discard(trigger.source.getCards('he'));
-                                break;
+                            trigger.source.discard(trigger.source.getCards('he'));
+                            trigger.source.chooseToDisable();
+                            trigger.source.mark('♣',{content:'弃置了所有牌，废除了一个装备栏'});
+                            break;
+                            
                         }
                     },
                     ai:{
@@ -321,6 +326,92 @@ game.import('character',function(lib,game,ui,get,ai,_status){
                 
                 
             },
+            "h_xier_hudun":{
+                trigger:{
+                    player:"damageEnd",
+                },
+                forced:true,
+                audio:2,
+                check:function(event,player){
+                    return player.getHistory('damage').indexOf(event)==0;
+                },
+                filter:function(event,player){
+                    var index=player.getHistory('damage').indexOf(event);
+                    return index==0||index==1;
+                },
+                content:function(){
+                    if(player.getHistory('damage').indexOf(trigger)>0){
+                        player.loseHp();
+                    }
+                    else{
+                        player.recover();
+                    }
+                },
+                subSkill:{
+                    damaged:{
+                        sub:true,
+                        "_priority":0,
+                    },
+                    ai:{
+                        sub:true,
+                        "_priority":0,
+                    },
+                },
+                ai:{
+                    "maixie_defend":true,
+                    threaten:0.9,
+                    effect:{
+                        target:function(card,player,target){
+                            if(player.hasSkillTag('jueqing')) return;
+                            if(target.hujia) return;
+                            if(player._shibei_tmp) return;
+                            if(target.hasSkill('shibei_ai')) return;
+                            if(_status.event.getParent('useCard',true)||_status.event.getParent('_wuxie',true)) return;
+                            if(get.tag(card,'damage')){
+                                if(target.getHistory('damage').length>0){
+                                    return [1,-2];
+                                }
+                                else{
+                                    if(get.attitude(player,target)>0&&target.hp>1){
+                                        return 0;
+                                    }
+                                    if(get.attitude(player,target)<0&&!player.hasSkillTag('damageBonus','e',{
+                                        target:target,
+                                        card:card
+                                    })){
+                                        if(card.name=='sha') return;
+                                        var sha=false;
+                                        player._shibei_tmp=true;
+                                        var num=player.countCards('h',function(card){
+                                            if(card.name=='sha'){
+                                                if(sha){
+                                                    return false;
+                                                }
+                                                else{
+                                                    sha=true;
+                                                }
+                                            }
+                                            return get.tag(card,'damage')&&player.canUse(card,target)&&get.effect(target,card,player,player)>0;
+                                        });
+                                        delete player._shibei_tmp;
+                                        if(player.hasSkillTag('damage')){
+                                            num++;
+                                        }
+                                        if(num<2){
+                                            var enemies=player.getEnemies();
+                                            if(enemies.length==1&&enemies[0]==target&&player.needsToDiscard()){
+                                                return;
+                                            }
+                                            return 0;
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                    },
+                },
+                "_priority":0,
+            }
 		},
         characterSort:{
             
