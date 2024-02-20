@@ -5,15 +5,16 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 		skill: {
 			//这里放技能
 			"h_yuanji": {
+				//马术
 				mod: {
-					globalFrom: function (from, to, distance) {
-						return distance - 5;
+					globalFrom(from, to, distance) {
+						return distance - 1;
 					},
 				},
 				"_priority": 0,
 			},
 			"h_sushe": {
-				audio: "ext:world:2",
+				//乱击
 				enable: "phaseUse",
 				position: "hs",
 				viewAs: {
@@ -127,11 +128,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			"h_yuanji_info": "锁定技，你计算与其他角色的距离时-5。",
 			"h_sushe": "创构",
 			"h_sushe_info": "出牌阶段，若你的手牌中有花色相同的牌，则你可以将一张当着［万箭齐发］打出",
-
-
-
-
-
 		},
 	};
 });

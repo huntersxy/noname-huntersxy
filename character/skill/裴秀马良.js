@@ -5,7 +5,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 		skill: {
 			//这里放技能
 			"h_zhishu": {
-				audio: "ext:烤箱魔改:2",
+				audio: "ext:noname-huntersxy:2",
 				locked: true,
 				subSkill: {
 					discard: {

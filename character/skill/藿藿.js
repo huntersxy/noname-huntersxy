@@ -40,13 +40,21 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				check: function (event, player) {
 					return player.hp <= 1 || player.getDamagedHp() > 1;
 				},
-				content: function () {
+				/* content: function () {
 					player.awakenSkill(event.name);
 					var num = player.maxHp - player.hp;
 					player.recover(num - 1);
 					player.draw(num);
 					player.init('h_huohuoweiba');
 
+				}, */
+				async content(event,trigger,player){
+					player.awakenSkill(event.name);
+					var num = player.maxHp - player.hp;
+					player.init('h_huohuoweiba');
+					player.recover(num - 1);
+					player.draw(num);
+					
 				},
 				mark: true,
 				intro: {
