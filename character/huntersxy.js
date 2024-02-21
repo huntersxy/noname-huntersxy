@@ -3,11 +3,12 @@ game.import('character',function(lib,game,ui,get,ai,_status){
 		name:'huntersxy',
 		connect:true,
 		character:{
+            
             //作者
-            "h_huntersxy":["female","shen",5,["h_yupai"],["zhu","boss","bossallowed","ext:noname-huntersxy/character/image/h_huntersxy.jpg"]],
+            "h_huntersxy":["female","shen",5,["h_guangce"],["zhu","boss","bossallowed","ext:noname-huntersxy/character/image/h_huntersxy.jpg"]],
             //崩坏三
             //白希
-            "h_baixier":["female","xy",3,["h_ss","深海","h_xier1"],["des:死生之律者","ext:noname-huntersxy/character/image/h_baixier.jpg"]],
+            "h_baixier":["female","xy",3,["h_ss","h_shenhai",],["des:死生之律者","ext:noname-huntersxy/character/image/h_baixier.jpg"]],
             //黑希
             "h_heixier":["female","xy","3/3/1",["h_shilv","h_xier_hudun"],["des:希儿...","ext:noname-huntersxy/character/image/h_heixier.jpg"]],
             //永恒布洛妮娅
@@ -70,7 +71,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
         'step 0'
         var evt=event.getParent(2);
         evt.set('aocai',true);
-        var cards=get.cards((get.mode()!='guozhan'&&player.countCards('h')==0)?10:10);
+        var cards=get.cards((get.mode()!='guozhan'&&player.countCards('h')==0)?5:5);
         for(var i=cards.length-1;i>=0;i--){
             ui.cardPile.insertBefore(cards[i].fix(),ui.cardPile.firstChild);
         }
@@ -181,6 +182,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
 
             "h_yupai":"御牌",
             "h_yupai_info":"你的出牌阶段和你需要响应牌时，你可以使用牌堆顶的4张牌",
+            "qw_guance":"御牌"
 
 		},
 	};

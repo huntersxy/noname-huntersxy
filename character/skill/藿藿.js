@@ -5,23 +5,29 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 		skill: {
 			//这里放技能
 			"h_quhun": {
-				audio: "ext:烤箱魔改:2",
-				locked: true,
-				subSkill: {
-					discard: {
-						trigger: {
-							global: "phaseEnd",
-						},
-						forced: true,
-						sub: true,
-						"_priority": 0,
-					},
-					draw: {
-						sub: true,
-						"_priority": 0,
-					},
+				audio: "mingzhe",
+				trigger: {
+					player: "loseAfter",
+					global: ["equipAfter", "addJudgeAfter", "gainAfter", "loseAsyncAfter", "addToExpansionAfter"],
 				},
-				group: ["fuqi", "repojun", "sbliegong"],
+				forced: true,
+				filter: function (event, player) {
+					if (player.isPhaseUsing()) return false;
+					var evt = event.getl(player);
+					for (var i of evt.cards2) {
+						if (get.color(i, player) == 'red') return true;
+					}
+					return false;
+				},
+				content: function () {
+					if (!trigger.visible) {
+						var cards = trigger.getl(player).hs.filter(function (i) {
+							return get.color(i, player) == 'red';
+						});
+						if (cards.length > 0) player.showCards(cards, get.translation(player) + '发动了【驱魂】');
+					}
+					player.draw(player.getDamagedHp());
+				},
 				"_priority": 0,
 			},
 			"h_weiba": {
@@ -48,13 +54,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.init('h_huohuoweiba');
 
 				}, */
-				async content(event,trigger,player){
+				async content(event, trigger, player) {
 					player.awakenSkill(event.name);
 					var num = player.maxHp - player.hp;
 					player.init('h_huohuoweiba');
 					player.recover(num - 1);
 					player.draw(num);
-					
+
 				},
 				mark: true,
 				intro: {
@@ -71,7 +77,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			"h_weiba": "尾巴",
 			"h_weiba_info": "觉醒技，濒死时，你将体力值回复至体力上限-1点值并摸等同于回复量的牌，然后将武将牌替换为【霍霍&尾巴大爷】。",
 			"h_quhun": "驱魂",
-			"h_quhun_info": "锁定技。你视为拥有技能【伏骑】【破军】【烈弓】",
+			"h_quhun_info": "锁定技。你于出牌阶段外失去红色牌后，你摸x张牌（x为你已损失的体力）",
 
 
 

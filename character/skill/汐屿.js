@@ -3,8 +3,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
         name: '汐屿技能',
         connect: true,
         skill: {
-
-
             "h_shouhu": {
                 trigger: {
                     player: "damageBegin1",

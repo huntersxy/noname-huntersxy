@@ -4,17 +4,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 		connect: true,
 		skill: {
 			//这里放技能
-
-
 		},
 		translate: {
 			//这里放描述			
-
-
-
-
-
-
 		},
 	};
 });

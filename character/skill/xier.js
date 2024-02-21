@@ -198,7 +198,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 "_priority": 0,
             },
-            "深海": {
+            "h_shenhai": {
+                group: "h_xier1",
                 audio: "ext:noname-huntersxy:2",
                 audioname: ["sb_xiaoqiao"],
                 mod: {
@@ -414,6 +415,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 
         },
         translate: {
+            "h_xier_hudun": "护佑",
+            "h_xier_hudun_info": "当你于回合内第一次受到伤害后，你回复一点体力，第二次及以后每受到一点伤害你失去一点体力。",
             "h_ss": "死生",
             "h_ss_info": "当场上有角色即将受到来源为牌的伤害时，你可弃一张牌对其进行判定。若判定结果为①黑桃：发动罪罚，其横置，并受到两点雷电伤害。②梅花：发动湮灭，其减少一点体力上限，翻面并且本回合非锁定技失效。③红桃：发动不息，其增加一点体力上限并回复一点体力，你回复一点体力④方块：发动赐福，其他角色无法对其使用牌。判定结束后，你摸一张牌。",
             "h_quanbing": "权柄",
@@ -422,8 +425,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             "h_hongtao": "不息",
             "h_meihua": "湮灭",
             "h_fangkuai": "赐福",
-            "深海": "深海",
-            "深海_info": "锁定技。你的梅花视为方块，你的黑桃视为红桃。当场上有判定结果为红心时，你可以修改该结果的花色。",
+            "h_shenhai": "深海",
+            "h_shenhai_info": "锁定技。你的梅花视为方块，你的黑桃视为红桃。当场上有判定结果为红心时，你可以修改该结果的花色。",
             "h_xier1": "h_xier1",
             "h_xier1_info": "",
             "h_shilv": "死律",

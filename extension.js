@@ -9,29 +9,30 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             lib.translate.xyColor = "#ebbd07";
             //以下是备注
             //v2.0 基于1.10.7.1
-        }, precontent: function (huntersxy) {
+        }, precontent: 
+        function (huntersxy) {
             if (huntersxy.enable) {
                 //初代角色技能外置，后续只要能用就不外置
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/普罗米修斯.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/汐屿.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/cvhanser.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/裴秀马良.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/布洛妮娅.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/始源爱莉.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/青雀.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/银狼.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/格蕾修.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/观星.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/藿藿.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/真纪.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/神蒲元.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/永恒布洛妮娅.js', null);
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/xier.js', null);
-                //lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/xier.js', null);
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/普罗米修斯.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/汐屿.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/cvhanser.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/裴秀马良.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/布洛妮娅.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/始源爱莉.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/青雀.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/银狼.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/格蕾修.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/观星.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/藿藿.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/真纪.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/神蒲元.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/永恒布洛妮娅.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/xier.js');
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/伳影.js');
 
 
                 //引用角色包
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/huntersxy.js', null);
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/huntersxy.js');
                 lib.config.all.characters.push('huntersxy');
                 lib.translate['huntersxy_character_config'] = "Huntersxy";//包名翻译
                 if (!lib.config.characters.includes('character') && !lib.config.extension_huntersxy_autoOpenPack) {
