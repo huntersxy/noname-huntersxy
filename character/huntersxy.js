@@ -53,99 +53,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
 
         },
         skill:{
-            "h_yupai":{
-                audio:"ext:huntersxy:2",
-                enable:["chooseToUse","chooseToRespond"],
-                hiddenCard:function(player,name){
-        if(player!=_status.currentPhase&&get.type(name)=='basic'&&lib.inpile.includes(name)) return true;
-    },
-                filter:function(event,player){
-        if(event.responded||player==_status.currentPhase||event.aocai) return true;
-        for(var i of lib.inpile){
-            if(get.type(i)=='basic'&&event.filterCard({name:i},player,event)) return true;
-        }
-        return true;
-    },
-                delay:false,
-                content:function(){
-        'step 0'
-        var evt=event.getParent(2);
-        evt.set('aocai',true);
-        var cards=get.cards((get.mode()!='guozhan'&&player.countCards('h')==0)?5:5);
-        for(var i=cards.length-1;i>=0;i--){
-            ui.cardPile.insertBefore(cards[i].fix(),ui.cardPile.firstChild);
-        }
-        var aozhan=player.hasSkill('aozhan');
-        player.chooseButton(['御牌：选择要'+(evt.name=='chooseToUse'?'使用':'打出')+'的牌',cards]).set('filterButton',function(button){
-            return _status.event.cards.includes(button.link);
-        }).set('cards',cards.filter(function(card){
-            if(aozhan&&card.name=='tao'){
-                return evt.filterCard({
-                    name:'sha',isCard:true,cards:[card],
-                },evt.player,evt)||evt.filterCard({
-                    name:'shan',isCard:true,cards:[card],
-                },evt.player,evt);
-            }
-            return evt.filterCard(card,evt.player,evt);
-        })).set('ai',function(button){
-            var evt=_status.event.getParent(3);
-            if(evt&&evt.ai){
-                var tmp=_status.event;
-                _status.event=evt;
-                var result=(evt.ai||event.ai1)(button.link,_status.event.player,evt);
-                _status.event=tmp;
-                return result;
-            }
-            return 1;
-        });
-        'step 1'
-        var evt=event.getParent(2);
-        if(result.bool&&result.links&&result.links.length){
-            var card=result.links[0];
-            var name=card.name,aozhan=(player.hasSkill('aozhan')&&name=='tao');
-            if(aozhan){
-                name=evt.filterCard({
-                    name:'sha',isCard:true,cards:[card],
-                },evt.player,evt)?'sha':'shan';
-            }
-            if(evt.name=='chooseToUse'){
-                game.broadcastAll(function(result,name){
-                    lib.skill.aocai_backup.viewAs={name:name,cards:[result],isCard:true};
-                },card,name);
-                evt.set('_backupevent','aocai_backup');
-                evt.set('openskilldialog',('请选择'+get.translation(card)+'的目标'))
-                evt.backup('aocai_backup');
-            }
-            else{
-                delete evt.result.skill;
-                delete evt.result.used;
-                evt.result.card=get.autoViewAs(result.links[0]);
-                if(aozhan) evt.result.card.name=name;
-                evt.result.cards=[result.links[0]];
-                evt.redo();
-                return;
-            }
-        }
-        evt.goto(0);
-    },
-                ai:{
-                    effect:{
-                        target:function(card,player,target,effect){
-                if(get.tag(card,'respondShan')) return 0.7;
-                if(get.tag(card,'respondSha')) return 0.7;
-            },
-                    },
-                    order:11,
-                    respondShan:true,
-                    respondSha:true,
-                    result:{
-                        player:function(player){
-                if(_status.event.dying) return get.attitude(player,_status.event.dying);
-                return 1;
-            },
-                    },
-                },
-            },
+            
         },
         characterSort:{
             huntersxy:{
@@ -180,9 +88,7 @@ game.import('character',function(lib,game,ui,get,ai,_status){
             xqtd:"星穹铁道",
             ybs:"原版逆天魔改",
 
-            "h_yupai":"御牌",
-            "h_yupai_info":"你的出牌阶段和你需要响应牌时，你可以使用牌堆顶的4张牌",
-            "qw_guance":"御牌"
+            
 
 		},
 	};

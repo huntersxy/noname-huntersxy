@@ -1,1 +1,1 @@
-copy D:\Game\Noname\resources\app\extension\noname-huntersxy\skill\test.js .\h_test.js
+copy D:\Noname\noname1.61\resources\app\extension\noname-huntersxy\character\skill\test.js .\h_test.js

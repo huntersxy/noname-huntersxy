@@ -1,48 +1,36 @@
 game.import("extension", function (lib, game, ui, get, ai, _status) {
     return {
-        name: "noname-huntersxy", content: function (config, pack) {
+        name: "noname-huntersxy", 
+        editable: false,
+        content: function (config, pack) {
+            //自己的自定义势力列表
             lib.group.addArray(['xy']);
-            lib.qy_group = ['xy']; //自己的自定义势力列表
+            lib.qy_group = ['xy']; 
             lib.translate.xy = '伳';
             lib.translate.xy2 = '伳';
             lib.groupnature.xy = 'xy';
             lib.translate.xyColor = "#ebbd07";
-            //以下是备注
-            //v2.0 基于1.10.7.1
+            //自己的自定义前缀
+            lib.namePrefix.set('寻',{color:'#FFA500'});
         }, precontent: 
         function (huntersxy) {
             if (huntersxy.enable) {
-                //初代角色技能外置，后续只要能用就不外置
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/普罗米修斯.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/汐屿.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/cvhanser.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/裴秀马良.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/布洛妮娅.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/始源爱莉.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/青雀.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/银狼.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/格蕾修.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/观星.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/藿藿.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/真纪.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/神蒲元.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/永恒布洛妮娅.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/xier.js');
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/skill/伳影.js');
+                //Huntersxy 武将包
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/extension_huntersxy.js');
+                window.HXY_import = function (pack) {
+                    pack(lib, game, ui, get, ai, _status);
+                };
 
 
-                //引用角色包
-                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/huntersxy.js');
-                lib.config.all.characters.push('huntersxy');
-                lib.translate['huntersxy_character_config'] = "Huntersxy";//包名翻译
+                lib.init.js(lib.assetURL + 'extension/noname-huntersxy/character/acg.js');
+                //lib.config.all.characters.push('acg');
+                lib.translate['acg_character_config'] = "ACG";//包名翻译
                 if (!lib.config.characters.includes('character') && !lib.config.extension_huntersxy_autoOpenPack) {
                     lib.config.characters.push('character')
                     game.saveConfig('characters', lib.config.characters)
-                    game.saveConfig('extension_huntersxy_autoOpenPack', true)
+                    game.saveConfig('extension_acg_autoOpenPack', true)
                 }
-                window.JINQU_import = function (func) {
-                    func(lib, game, ui, get, ai, _status);
-                };
+
             }
         }, help: {}, config: {}, package: {
             character: {
